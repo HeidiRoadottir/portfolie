@@ -157,6 +157,7 @@
       background: #020617;
       color: var(--text-muted);
       white-space: nowrap;
+      cursor: pointer; /* ok også på tags */
     }
 
     .pill-dot {
@@ -167,7 +168,8 @@
       opacity: 0.8;
     }
 
-    .pill--accent {
+    .pill--accent,
+    .pill.active {
       border-color: rgba(125,211,252,0.55);
       color: var(--accent-strong);
       background: rgba(8,47,73,0.6);
@@ -407,12 +409,27 @@
           Master’s student in Digital Transformation, with a background in data analysis and digital design.
         </span>
 
-        <div class="hero-pills">
-          <span class="pill pill--accent"><span class="pill-dot"></span>Digital transformation</span>
-          <span class="pill"><span class="pill-dot"></span>UX & interaction design</span>
-          <span class="pill"><span class="pill-dot"></span>Data & analytics</span>
-          <span class="pill"><span class="pill-dot"></span>RPA & automation</span>
-          <span class="pill"><span class="pill-dot"></span>Critical & speculative design</span>
+        <!-- FILTER PILLS -->
+        <div class="hero-pills" id="filters">
+          <button class="pill pill--accent active" data-filter="all">
+            <span class="pill-dot"></span> Digital transformation
+          </button>
+
+          <button class="pill" data-filter="ux">
+            <span class="pill-dot"></span> UX & interaction design
+          </button>
+
+          <button class="pill" data-filter="data">
+            <span class="pill-dot"></span> Data & analytics
+          </button>
+
+          <button class="pill" data-filter="rpa">
+            <span class="pill-dot"></span> RPA & automation
+          </button>
+
+          <button class="pill" data-filter="critical">
+            <span class="pill-dot"></span> Critical & speculative design
+          </button>
         </div>
       </div>
 
@@ -445,7 +462,7 @@
     <div class="projects-grid">
 
       <!-- 2025 - BKK -->
-      <article class="project" data-category="digital, rpa">
+      <article class="project" data-category="digital rpa">
         <h3>RPA in Barnabókaklubbin – Automation in a Children’s Book Club</h3>
         <p class="project-meta">2025 · Master project · Digital transformation & RPA</p>
         <p class="role"><strong>My role:</strong> Interviews, process mapping, design of automation approach and evaluation.</p>
@@ -464,7 +481,7 @@
       </article>
 
       <!-- 2025 - Sunflower -->
-      <article class="project" data-category="UX, cricital">
+      <article class="project" data-category="ux critical">
         <h3>Det man ikke ser – Critical Design on the Sunflower Lanyard</h3>
         <p class="project-meta">2025 · Master semester project · Critical & speculative design</p>
         <p class="role"><strong>My role:</strong> Research, experiment design and critical reflection.</p>
@@ -482,7 +499,7 @@
       </article>
 
       <!-- EchoGuide -->
-      <article class="project" data-category="ux, critical">
+      <article class="project" data-category="ux critical">
         <h3>EchoGuide – Accessible Museum Companion</h3>
         <p class="project-meta">2024 · Master project · UX & accessibility</p>
         <p class="role"><strong>My role:</strong> Concept & prototype development.</p>
@@ -500,7 +517,7 @@
       </article>
 
       <!-- LumiBreath -->
-      <article class="project" data-category="digital, ux">
+      <article class="project" data-category="digital ux">
         <h3>LumiBreath – Interactive Breathing Lamp</h3>
         <p class="project-meta">2024 · Tangible interaction</p>
         <p class="role"><strong>My role:</strong> Concept, design & interaction.</p>
@@ -582,28 +599,12 @@
     </p>
 
     <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;">
-     <div class="hero-pills" id="filters">
-  <button class="pill pill--accent active" data-filter="all">
-    <span class="pill-dot"></span> Digital transformation
-  </button>
-
-  <button class="pill" data-filter="ux">
-    <span class="pill-dot"></span> UX & interaction design
-  </button>
-
-  <button class="pill" data-filter="data">
-    <span class="pill-dot"></span> Data & analytics
-  </button>
-
-  <button class="pill" data-filter="rpa">
-    <span class="pill-dot"></span> RPA & automation
-  </button>
-
-  <button class="pill" data-filter="critical">
-    <span class="pill-dot"></span> Critical & speculative design
-  </button>
-</div>
-
+      <span class="pill pill-small">Digital transformation</span>
+      <span class="pill pill-small">UX & interaction</span>
+      <span class="pill pill-small">Critical design</span>
+      <span class="pill pill-small">Data & analytics</span>
+      <span class="pill pill-small">RPA & automation</span>
+    </div>
   </article>
 
   <!-- TIMELINE -->
@@ -730,26 +731,29 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
 <script>
 const filterButtons = document.querySelectorAll('#filters .pill');
 const projects = document.querySelectorAll('.projects-grid .project');
 
 filterButtons.forEach(button => {
   button.addEventListener('click', () => {
-    
-    // remove active style
+    // active styling on button
     filterButtons.forEach(btn => btn.classList.remove('pill--accent', 'active'));
     button.classList.add('pill--accent', 'active');
 
-    const filter = button.getAttribute('data-filter');
+    const filter = button.dataset.filter; // fx "ux", "data", "all"
 
     projects.forEach(project => {
-      const category = project.getAttribute('data-category');
+      const cats = (project.dataset.category || "")
+        .split(" ")
+        .map(c => c.trim())
+        .filter(Boolean);
 
-      if (filter === "all" || category === filter) {
-        project.style.display = "flex";
+      if (filter === "all" || cats.includes(filter)) {
+        project.style.display = "";     // show
       } else {
-        project.style.display = "none";
+        project.style.display = "none"; // hide
       }
     });
   });
