@@ -7,10 +7,10 @@
 
   <style>
     :root {
-      --bg: #070b10;
-      --bg-alt: #0f1724;
-      --card: #111827;
+      --bg: #020617;
+      --card: #0b1220;
       --accent: #7dd3fc;
+      --accent-strong: #38bdf8;
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
       --border-subtle: #1f2937;
@@ -24,7 +24,7 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #020617;
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
       color: var(--text-main);
     }
 
@@ -34,14 +34,22 @@
       padding: 0 18px 60px;
     }
 
-    /* NAV */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* NAVBAR */
     .nav {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
       backdrop-filter: blur(16px);
-      background: rgba(15,23,42,0.95);
-      border-bottom: 1px solid rgba(148,163,184,0.1);
+      background: rgba(15,23,42,0.96);
+      border-bottom: 1px solid rgba(148,163,184,0.12);
     }
 
     .nav-inner {
@@ -51,6 +59,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
     }
 
     .nav-brand {
@@ -58,27 +67,159 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
     }
 
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
-      margin-left: 10px;
-      padding: 6px 10px;
+      padding: 6px 11px;
       border-radius: 999px;
       border: 1px solid transparent;
     }
 
     .nav-links a:hover {
-      border-color: rgba(125,211,252,0.3);
-      color: var(--accent);
+      border-color: rgba(125,211,252,0.4);
+      color: var(--accent-strong);
+      background: rgba(15,23,42,0.9);
     }
 
-    /* PROJECT GRID */
+    /* HERO / ABOUT */
+    header {
+      padding: 40px 0 30px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 22px;
+    }
+
+    @media (min-width: 860px) {
+      .hero {
+        grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.3fr);
+        align-items: center;
+      }
+    }
+
+    .hero-tag {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(2.2rem, 3.2vw, 2.7rem);
+    }
+
+    .hero-subtitle {
+      font-size: 1.0rem;
+      color: var(--text-muted);
+      max-width: 35rem;
+      line-height: 1.7;
+    }
+
+    .hero-highlight {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.86rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.3);
+      background: rgba(15,23,42,0.85);
+      color: #cbd5f5;
+    }
+
+    .hero-pills {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: #020617;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      opacity: 0.8;
+    }
+
+    .pill--accent {
+      border-color: rgba(125,211,252,0.55);
+      color: var(--accent-strong);
+      background: rgba(8,47,73,0.6);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1f2937, #020617);
+      border-radius: 16px;
+      padding: 18px 18px 14px;
+      border: 1px solid rgba(148,163,184,0.3);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+      font-size: 0.93rem;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+
+    .hero-card p {
+      margin: 0 0 8px;
+      color: #cbd5f5;
+    }
+
+    .hero-meta {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(148,163,184,0.35);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* PROJECTS */
+    section {
+      margin-top: 30px;
+    }
+
+    h2 {
+      margin: 0 0 6px;
+      font-size: 1.3rem;
+    }
+
+    .section-intro {
+      margin: 0 0 16px;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      max-width: 40rem;
+    }
+
     .projects-grid {
       display: grid;
       gap: 18px;
-      margin-top: 12px;
     }
 
     @media (min-width: 900px) {
@@ -87,14 +228,16 @@
       }
     }
 
-    /* PROJECT CARD */
     .project {
-      background: rgba(15,23,42,.95);
+      background: rgba(15,23,42,.96);
       border-radius: 14px;
       border: 1px solid rgba(148,163,184,.25);
       padding: 16px 16px 14px;
       box-shadow: 0 18px 35px rgba(15,23,42,0.7);
       transition: all 0.18s ease-out;
+      display: flex;
+      flex-direction: column;      /* allow footer to stick to bottom */
+      height: 100%;
     }
 
     .project:hover {
@@ -111,40 +254,115 @@
     .role {
       color: #cbd5f5;
       font-size: 0.9rem;
+      margin-bottom: 6px;
     }
 
-    .pill {
-      display: inline-block;
-      font-size: 0.78rem;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
-      background: #020617;
-      color: var(--text-muted);
-      margin-right: 6px;
-      margin-top: 6px;
+    .project p {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
     }
 
-    h1, h2, h3 { margin: 0 0 6px; }
+    /* PROJECT FOOTER so Read more lines up */
+    .project-footer {
+      margin-top: auto;            /* push footer to bottom of card */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill-small {
+      font-size: 0.75rem;
+      padding: 3px 9px;
+      margin: 0;
+    }
 
     /* READ MORE BUTTON */
     .read-more {
       display: inline-block;
-      margin-top: 10px;
       padding: 6px 12px;
       border-radius: 10px;
       border: 1px solid rgba(148,163,184,.35);
-      background: rgba(15,23,42,.8);
+      background: rgba(15,23,42,.85);
       color: #7dd3fc;
       font-size: .85rem;
       text-decoration: none;
       transition: all .18s ease-out;
+      white-space: nowrap;
     }
 
     .read-more:hover {
-      border-color: rgba(125,211,252,.7);
-      background: rgba(2,6,23,.9);
-      color: white;
+      border-color: rgba(125,211,252,.8);
+      background: rgba(2,6,23,.95);
+      color: #e5e7eb;
+      text-decoration: none;
+    }
+
+    /* CONTACT FORM */
+    .contact-wrapper {
+      margin-top: 10px;
+      max-width: 480px;
+    }
+
+    .form-row {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: #020617;
+      color: var(--text-main);
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(125,211,252,0.8);
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.3);
+    }
+
+    .btn-submit {
+      margin-top: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,189,248,0.8);
+      background: linear-gradient(to right, #0ea5e9, #22d3ee);
+      color: #020617;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: filter 0.15s ease-out;
+    }
+
+    .btn-submit:hover {
+      filter: brightness(1.05);
     }
 
     footer {
@@ -164,121 +382,218 @@
   <div class="nav-inner">
     <div class="nav-brand">Heidi · Portfolio</div>
     <div class="nav-links">
+      <a href="#about">About</a>
       <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
 
 <main>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <p class="section-intro">
-    A mix of bachelor and master level work spanning NLP, sports analytics, critical design,
-    tangible interaction and RPA.
-  </p>
-
-  <div class="projects-grid">
-
-    <!-- 2025 - BKK -->
-    <article class="project">
-      <h3>RPA in Barnabókaklubbin – Automation in a Children’s Book Club</h3>
-      <p class="project-meta">2025 · Master project · Digital transformation & RPA</p>
-      <p class="role"><strong>My role:</strong> Interviews, process mapping, design of automation approach and evaluation.</p>
-      <p>
-        Barnabókaklubbin is a Faroese children’s book club with fragmented systems and highly manual administration.
-        This project investigates how RPA can reduce repetitive work while respecting human judgement.
-      </p>
+  <!-- HERO / ABOUT -->
+  <header id="about">
+    <div class="hero">
       <div>
-        <span class="pill">RPA</span>
-        <span class="pill">Power Automate</span>
-        <span class="pill">Blueprinting</span>
+        <div class="hero-tag">Digital transformation · UX · data</div>
+        <h1>Heidi Lindenskov Róadóttir</h1>
+        <p class="hero-subtitle">
+          I move between <strong>data analysis</strong>, <strong>interaction & critical design</strong>
+          and <strong>automation</strong>. I like working where messy real-world practice meets digital
+          systems – from children’s book clubs and football clubs to museums and hidden disability contexts.
+        </p>
+        <span class="hero-highlight">
+          Master’s student in Digital Transformation, with a background in data analysis and digital design.
+        </span>
+
+        <div class="hero-pills">
+          <span class="pill pill--accent"><span class="pill-dot"></span>Digital transformation</span>
+          <span class="pill"><span class="pill-dot"></span>UX & interaction design</span>
+          <span class="pill"><span class="pill-dot"></span>Data & analytics</span>
+          <span class="pill"><span class="pill-dot"></span>RPA & automation</span>
+          <span class="pill"><span class="pill-dot"></span>Critical & speculative design</span>
+        </div>
       </div>
-      <a href="bbk.html" class="read-more">Read more →</a>
-    </article>
 
-    <!-- 2025 - Sunflower -->
-    <article class="project">
-      <h3>Det man ikke ser – Critical Design on the Sunflower Lanyard</h3>
-      <p class="project-meta">2025 · Master semester project · Critical & speculative design</p>
-      <p class="role"><strong>My role:</strong> Research, experiment design and critical reflection.</p>
-      <p>
-        Investigating how the sunflower lanyard for hidden disabilities is interpreted — and how it can both support and stigmatise.
-      </p>
-      <div>
-        <span class="pill">Critical design</span>
-        <span class="pill">Speculative</span>
-      </div>
-      <a href="sunflower.html" class="read-more">Read more →</a>
-    </article>
+      <aside class="hero-card">
+        <h2>What I like working on</h2>
+        <p>
+          Connecting <strong>qualitative insights</strong> with <strong>quantitative structure</strong>.
+          Turning complex processes – like memberships, disability symbols or match data – into
+          something people can understand and act on.
+        </p>
+        <p>
+          I enjoy projects where technology is not just efficient, but also <strong>humane,
+          situated and a little provocative</strong>.
+        </p>
+        <div class="hero-meta">
+          Comfortable with R, basic Python, UX methods, research-through-design and Power Automate.
+        </div>
+      </aside>
+    </div>
+  </header>
 
-    <!-- EchoGuide -->
-    <article class="project">
-      <h3>EchoGuide – Accessible Museum Companion</h3>
-      <p class="project-meta">2024 · Master project · UX & accessibility</p>
-      <p class="role"><strong>My role:</strong> Concept & prototype development</p>
-      <p>
-        Audio-based museum companion improving accessibility through inclusive interaction design.
-      </p>
-      <div>
-        <span class="pill">UX</span>
-        <span class="pill">Accessibility</span>
-      </div>
-      <a href="echoguide.html" class="read-more">Read more →</a>
-    </article>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <p class="section-intro">
+      A mix of bachelor and master level work spanning NLP, sports analytics, critical design,
+      tangible interaction and RPA.
+    </p>
 
-    <!-- LumiBreath -->
-    <article class="project">
-      <h3>LumiBreath – Interactive Breathing Lamp</h3>
-      <p class="project-meta">2024 · Tangible interaction</p>
-      <p class="role"><strong>My role:</strong> Concept, design & interaction</p>
-      <p>
-        Physical-digital lamp guiding breathing to support calmness & emotional regulation.
-      </p>
-      <div>
-        <span class="pill">Interaction Design</span>
-      </div>
-      <a href="lumibreath.html" class="read-more">Read more →</a>
-    </article>
+    <div class="projects-grid">
 
-    <!-- Knowable -->
-    <article class="project">
-      <h3>Knowable – Trustpilot Review Insights</h3>
-      <p class="project-meta">2023 · Bachelor project · NLP / R</p>
-      <p>
-        Analysing text behind Trustpilot star ratings using sentiment + topic modelling.
-      </p>
-      <div>
-        <span class="pill">R</span>
-        <span class="pill">NLP</span>
-      </div>
-      <a href="knowable.html" class="read-more">Read more →</a>
-    </article>
+      <!-- 2025 - BKK -->
+      <article class="project">
+        <h3>RPA in Barnabókaklubbin – Automation in a Children’s Book Club</h3>
+        <p class="project-meta">2025 · Master project · Digital transformation & RPA</p>
+        <p class="role"><strong>My role:</strong> Interviews, process mapping, design of automation approach and evaluation.</p>
+        <p>
+          Barnabókaklubbin is a Faroese children’s book club with fragmented systems and highly manual administration.
+          This project investigates how RPA can reduce repetitive work while respecting human judgement.
+        </p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="pill pill-small">RPA</span>
+            <span class="pill pill-small">Power Automate</span>
+            <span class="pill pill-small">Blueprinting</span>
+          </div>
+          <a href="bbk.html" class="read-more">Read more →</a>
+        </div>
+      </article>
 
-    <!-- Brøndby -->
-    <article class="project">
-      <h3>Brøndby IF – Data-Driven Football Analytics</h3>
-      <p class="project-meta">2022 · Bachelor project · Sports analytics</p>
-      <p>
-        Expected Goals modelling & performance insight using match event data.
-      </p>
-      <div>
-        <span class="pill">Sports analytics</span>
-      </div>
-      <a href="brondby.html" class="read-more">Read more →</a>
-    </article>
+      <!-- 2025 - Sunflower -->
+      <article class="project">
+        <h3>Det man ikke ser – Critical Design on the Sunflower Lanyard</h3>
+        <p class="project-meta">2025 · Master semester project · Critical & speculative design</p>
+        <p class="role"><strong>My role:</strong> Research, experiment design and critical reflection.</p>
+        <p>
+          Investigating how the sunflower lanyard for hidden disabilities is interpreted in public space —
+          and how it can both support and stigmatise.
+        </p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="pill pill-small">Critical design</span>
+            <span class="pill pill-small">Speculative</span>
+          </div>
+          <a href="sunflower.html" class="read-more">Read more →</a>
+        </div>
+      </article>
 
-  </div>
-</section>
+      <!-- EchoGuide -->
+      <article class="project">
+        <h3>EchoGuide – Accessible Museum Companion</h3>
+        <p class="project-meta">2024 · Master project · UX & accessibility</p>
+        <p class="role"><strong>My role:</strong> Concept & prototype development.</p>
+        <p>
+          Audio-based museum companion improving accessibility for visitors with visual impairments and other needs
+          through inclusive interaction design.
+        </p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="pill pill-small">UX</span>
+            <span class="pill pill-small">Accessibility</span>
+          </div>
+          <a href="echoguide.html" class="read-more">Read more →</a>
+        </div>
+      </article>
 
-<footer>
-  © <span id="year"></span> Heidi Lindenskov Róadóttir
-</footer>
+      <!-- LumiBreath -->
+      <article class="project">
+        <h3>LumiBreath – Interactive Breathing Lamp</h3>
+        <p class="project-meta">2024 · Tangible interaction</p>
+        <p class="role"><strong>My role:</strong> Concept, design & interaction.</p>
+        <p>
+          Physical-digital lamp that uses light and motion to guide breathing and support calmness
+          and emotional regulation.
+        </p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="pill pill-small">Interaction design</span>
+            <span class="pill pill-small">Embodied</span>
+          </div>
+          <a href="lumibreath.html" class="read-more">Read more →</a>
+        </div>
+      </article>
+
+      <!-- Knowable -->
+      <article class="project">
+        <h3>Knowable – Trustpilot Review Insights</h3>
+        <p class="project-meta">2023 · Bachelor project · NLP / R</p>
+        <p class="role"><strong>My role:</strong> Concept, data pipeline, text analysis and prototype.</p>
+        <p>
+          Analysing the text behind Trustpilot star ratings using sentiment and topic modelling to reveal
+          richer patterns in customer experience.
+        </p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="pill pill-small">R</span>
+            <span class="pill pill-small">NLP</span>
+          </div>
+          <a href="knowable.html" class="read-more">Read more →</a>
+        </div>
+      </article>
+
+      <!-- Brøndby -->
+      <article class="project">
+        <h3>Brøndby IF – Data-Driven Football Analytics</h3>
+        <p class="project-meta">2022 · Bachelor project · Sports analytics</p>
+        <p class="role"><strong>My role:</strong> Data preparation, modelling and interpretation.</p>
+        <p>
+          Expected Goals modelling and performance analysis based on match event data to support more
+          data-driven tactical decisions.
+        </p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="pill pill-small">Sports analytics</span>
+            <span class="pill pill-small">R</span>
+          </div>
+          <a href="brondby.html" class="read-more">Read more →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="section-intro">
+      Feel free to reach out about thesis collaboration, projects, or roles where you need someone
+      who can bridge data, design and organisational perspectives.
+    </p>
+
+    <div class="contact-wrapper">
+      <!-- NOTE: replace action="#" with a real endpoint (e.g. Formspree) if you want it to submit somewhere -->
+      <form action="#" method="post">
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" />
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" />
+        </div>
+
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="What would you like to talk about?"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Send message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Heidi Lindenskov Róadóttir
+  </footer>
 
 </main>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
