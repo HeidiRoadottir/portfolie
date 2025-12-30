@@ -16,31 +16,19 @@
       --border-subtle: #1f2937;
     }
 
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+      background: #020617;
       color: var(--text-main);
     }
 
-    main {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 18px 60px;
-    }
+    main { max-width: 1040px; margin: 0 auto; padding: 0 18px 60px; }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     /* NAVBAR */
     .nav {
@@ -51,7 +39,6 @@
       background: rgba(15,23,42,0.96);
       border-bottom: 1px solid rgba(148,163,184,0.12);
     }
-
     .nav-inner {
       max-width: 1040px;
       margin: 0 auto;
@@ -61,7 +48,6 @@
       justify-content: space-between;
       gap: 16px;
     }
-
     .nav-brand {
       font-size: 0.9rem;
       letter-spacing: 0.12em;
@@ -69,14 +55,12 @@
       color: var(--text-muted);
       white-space: nowrap;
     }
-
     .nav-links {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       font-size: 0.9rem;
     }
-
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
@@ -84,7 +68,6 @@
       border-radius: 999px;
       border: 1px solid transparent;
     }
-
     .nav-links a:hover {
       border-color: rgba(125,211,252,0.4);
       color: var(--accent-strong);
@@ -151,13 +134,13 @@
       align-items: center;
       gap: 6px;
       font-size: 0.78rem;
-      padding: 4px 10px;
+      padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid var(--border-subtle);
       background: #020617;
       color: var(--text-muted);
       white-space: nowrap;
-      cursor: pointer; /* ok også på tags */
+      cursor: pointer;
     }
 
     .pill-dot {
@@ -202,7 +185,7 @@
       color: var(--text-muted);
     }
 
-    /* PROJECTS */
+    /* SECTIONS / PROJECTS */
     section {
       margin-top: 30px;
     }
@@ -238,7 +221,7 @@
       box-shadow: 0 18px 35px rgba(15,23,42,0.7);
       transition: all 0.18s ease-out;
       display: flex;
-      flex-direction: column;      /* allow footer to stick to bottom */
+      flex-direction: column;
       height: 100%;
     }
 
@@ -265,9 +248,8 @@
       font-size: 0.9rem;
     }
 
-    /* PROJECT FOOTER so Read more lines up */
     .project-footer {
-      margin-top: auto;            /* push footer to bottom of card */
+      margin-top: auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -287,7 +269,6 @@
       margin: 0;
     }
 
-    /* READ MORE BUTTON */
     .read-more {
       display: inline-block;
       padding: 6px 12px;
@@ -306,6 +287,70 @@
       background: rgba(2,6,23,.95);
       color: #e5e7eb;
       text-decoration: none;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      margin-top: 12px;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 10px;
+      width: 2px;
+      background: rgba(148,163,184,0.3);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 26px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 2px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 3px solid #020617;
+      background: rgba(148,163,184,0.4);
+      box-shadow: 0 0 0 2px rgba(15,23,42,1);
+      transition: all 0.18s ease-out;
+    }
+
+    .timeline-content {
+      background: rgba(15,23,42,0.96);
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,0.28);
+      padding: 10px 12px 9px;
+      box-shadow: 0 10px 20px rgba(15,23,42,0.6);
+      font-size: 0.9rem;
+    }
+
+    .timeline-year {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #e5e7eb;
+    }
+
+    .timeline-item p {
+      margin: 0 0 4px;
+    }
+
+    .timeline-item.active .timeline-dot {
+      background: #38bdf8;
+      transform: scale(1.1);
+    }
+
+    .timeline-item.active .timeline-year {
+      color: #7dd3fc;
     }
 
     /* CONTACT FORM */
@@ -412,23 +457,22 @@
         <!-- FILTER PILLS -->
         <div class="hero-pills" id="filters">
           <button class="pill pill--accent active" data-filter="all">
-            <span class="pill-dot"></span> Everything
+            <span class="pill-dot"></span> All projects
           </button>
-
+          <button class="pill" data-filter="digital">
+            <span class="pill-dot"></span> Digital transformation
+          </button>
           <button class="pill" data-filter="ux">
-            <span class="pill-dot"></span> UX & interaction design
+            <span class="pill-dot"></span> UX & interaction
           </button>
-
           <button class="pill" data-filter="data">
             <span class="pill-dot"></span> Data & analytics
           </button>
-
           <button class="pill" data-filter="rpa">
             <span class="pill-dot"></span> RPA & automation
           </button>
-
           <button class="pill" data-filter="critical">
-            <span class="pill-dot"></span> Critical & speculative design
+            <span class="pill-dot"></span> Critical design
           </button>
         </div>
       </div>
@@ -573,146 +617,84 @@
     </div>
   </section>
   
-<!-- CV section -->
-<section id="cv">
-  <h2>CV / Profile</h2>
-  <p class="section-intro">
-    A short overview of who I am as a professional, what I bring to projects
-    and how my experience connects across data, design and digital transformation.
-  </p>
+  <!-- CV / TIMELINE -->
+  <section id="cv">
+    <h2>Experience & Education Timeline</h2>
 
-  <!-- ACTION ROW -->
-  <div style="display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 18px;">
-    <a class="read-more" href="CV%201225.pdf" target="_blank">Download full CV →</a>
-    <a class="read-more" href="mailto:your@email.com">Email me ✉</a>
-    <a class="read-more" href="https://www.linkedin.com" target="_blank">LinkedIn →</a>
-  </div>
+    <div class="timeline" id="timeline">
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">2025</div>
+          <p><strong>Teaching Assistant – Roskilde University</strong></p>
+          <p>Supporting students, facilitating learning and translating theory into usable practice.</p>
+        </div>
+      </article>
 
-  <!-- OVERVIEW CARD -->
-  <article class="project" style="margin-bottom:16px;">
-    <h3>Who I am</h3>
-    <p>
-      A hybrid digital profile combining <strong>UX & critical design</strong>,
-      <strong>data analysis</strong> and <strong>automation</strong>.
-      I enjoy working in the messy intersection between people, organisations and technology —
-      turning complexity into something understandable, meaningful and useful.
-    </p>
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">2024–2026</div>
+          <p><strong>Cand.IT Digital Transformation</strong></p>
+          <p>Focus on UX, design, digital infrastructures, automation and organisational change.</p>
+        </div>
+      </article>
 
-    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;">
-      <span class="pill pill-small">Digital transformation</span>
-      <span class="pill pill-small">UX & interaction</span>
-      <span class="pill pill-small">Critical design</span>
-      <span class="pill pill-small">Data & analytics</span>
-      <span class="pill pill-small">RPA & automation</span>
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">2021–2023</div>
+          <p><strong>Bachelor in Data Analysis</strong></p>
+          <p>Quantitative methods, modelling, statistics, data interpretation and problem-solving.</p>
+        </div>
+      </article>
+
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">Professional experience</div>
+          <p><strong>Data, communication & digital initiatives</strong></p>
+          <p>Working with data insights, communication, branding and digital projects in organisations.</p>
+        </div>
+      </article>
     </div>
-  </article>
-
-  <!-- TIMELINE -->
-  <h3>Experience & Education Timeline</h3>
-
-  <div class="project" style="margin-bottom:10px;">
-    <strong>2025 — Teaching Assistant, Roskilde University</strong>
-    <p style="margin:6px 0;">
-      Supporting students, facilitating learning, translating theory into usable practice.
-    </p>
-    <div class="project-tags">
-      <span class="pill pill-small">Teaching</span>
-      <span class="pill pill-small">Guidance</span>
-      <span class="pill pill-small">Communication</span>
-    </div>
-  </div>
-
-  <div class="project" style="margin-bottom:10px;">
-    <strong>2024–2026 — Cand.IT Digital Transformation</strong>
-    <p style="margin:6px 0;">
-      Focus on UX, design, digital infrastructures, automation and organisational change.
-    </p>
-    <div class="project-tags">
-      <span class="pill pill-small">Design</span>
-      <span class="pill pill-small">Digitalisation</span>
-      <span class="pill pill-small">Research</span>
-    </div>
-  </div>
-
-  <div class="project" style="margin-bottom:10px;">
-    <strong>2021–2023 — Bachelor in Data Analysis</strong>
-    <p style="margin:6px 0;">
-      Quantitative methods, modelling, statistics, data interpretation and problem-solving.
-    </p>
-    <div class="project-tags">
-      <span class="pill pill-small">R</span>
-      <span class="pill pill-small">Statistics</span>
-      <span class="pill pill-small">Analytics</span>
-    </div>
-  </div>
-
-  <div class="project" style="margin-bottom:10px;">
-    <strong>Professional experience</strong>
-    <p style="margin:6px 0;">
-      Experience working with data insights, communication, branding and digital initiatives
-      in both organisational and project contexts.
-    </p>
-    <div class="project-tags">
-      <span class="pill pill-small">Data</span>
-      <span class="pill pill-small">Digital Communication</span>
-      <span class="pill pill-small">Organisation</span>
-    </div>
-  </div>
-
-  <!-- SKILLS -->
-  <h3>Skills & Competences</h3>
-  <div class="project">
-    <p><strong>Design & UX</strong></p>
-    <div class="project-tags">
-      <span class="pill pill-small">Research</span>
-      <span class="pill pill-small">Prototyping</span>
-      <span class="pill pill-small">Accessibility</span>
-      <span class="pill pill-small">Critical Design</span>
-    </div>
-
-    <p style="margin-top:10px;"><strong>Data & Analysis</strong></p>
-    <div class="project-tags">
-      <span class="pill pill-small">R</span>
-      <span class="pill pill-small">Statistics</span>
-      <span class="pill pill-small">NLP (basic)</span>
-      <span class="pill pill-small">Visualisation</span>
-    </div>
-
-    <p style="margin-top:10px;"><strong>Automation & Digitalisation</strong></p>
-    <div class="project-tags">
-      <span class="pill pill-small">RPA</span>
-      <span class="pill pill-small">Power Automate</span>
-      <span class="pill pill-small">Process Mapping</span>
-    </div>
-  </div>
-
-  <p class="section-intro" style="margin-top:12px;">
-    Full CV PDF includes complete history, responsibilities and achievements.
-  </p>
-</section>
+  </section>
   
   <!-- CONTACT -->
-<form id="contactForm" method="POST">
-  <div class="form-row">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" placeholder="Your name" required />
-  </div>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="section-intro">
+      Feel free to reach out about thesis collaboration, projects, or roles where you need someone
+      who can bridge data, design and organisational perspectives.
+    </p>
+    <p class="section-intro">
+      You can also contact me directly at
+      <a href="mailto:heidilindenskovroadottir@gmail.com">heidilindenskovroadottir@gmail.com</a>
+      or via
+      <a href="https://www.linkedin.com/in/heidi-lindenskov-r%C3%B3ad%C3%B3ttir/" target="_blank">LinkedIn</a>.
+    </p>
 
-  <div class="form-row">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="_replyto" placeholder="you@example.com" required />
-  </div>
+    <div class="contact-wrapper">
+      <form id="contactForm" method="POST">
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
 
-  <div class="form-row">
-    <label for="message">Message</label>
-    <textarea id="message" name="message" placeholder="What would you like to talk about?" required></textarea>
-  </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="_replyto" placeholder="you@example.com" required />
+        </div>
 
-  <button type="submit" class="btn-submit">Send message</button>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="What would you like to talk about?" required></textarea>
+        </div>
 
-  <div id="form-status" style="margin-top:8px; font-size:0.9rem;"></div>
-</form>
+        <button type="submit" class="btn-submit">Send message</button>
 
+        <div id="form-status" style="margin-top:8px; font-size:0.9rem;"></div>
+      </form>
     </div>
   </section>
 
@@ -722,52 +704,64 @@
 
 </main>
 
+<!-- JS: year -->
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
+<!-- JS: project filter -->
 <script>
 const filterButtons = document.querySelectorAll('#filters .pill');
 const projects = document.querySelectorAll('.projects-grid .project');
 
 filterButtons.forEach(button => {
   button.addEventListener('click', () => {
-    // active styling on button
-    filterButtons.forEach(btn => btn.classList.remove('pill--accent', 'active'));
+    filterButtons.forEach(b => b.classList.remove('pill--accent', 'active'));
     button.classList.add('pill--accent', 'active');
 
-    const filter = button.dataset.filter; // fx "ux", "data", "all"
+    const f = button.dataset.filter;
 
-    projects.forEach(project => {
-      const cats = (project.dataset.category || "")
-        .split(" ")
-        .map(c => c.trim())
-        .filter(Boolean);
-
-      if (filter === "all" || cats.includes(filter)) {
-        project.style.display = "";     // show
-      } else {
-        project.style.display = "none"; // hide
-      }
+    projects.forEach(p => {
+      const cats = (p.dataset.category || "").split(" ").map(c => c.trim()).filter(Boolean);
+      p.style.display = (f === "all" || cats.includes(f)) ? "" : "none";
     });
   });
 });
 </script>
 
-  <script>
+<!-- JS: timeline highlight -->
+<script>
+const items = document.querySelectorAll('.timeline-item');
+if (items.length) {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        items.forEach(i => i.classList.remove('active'));
+        e.target.classList.add('active');
+      }
+    });
+  }, {
+    threshold: 0.5,
+    rootMargin: '-10% 0px -40% 0px'
+  });
+
+  items.forEach(i => obs.observe(i));
+}
+</script>
+
+<!-- JS: contact form with Formspree -->
+<script>
 const form = document.getElementById("contactForm");
-const status = document.getElementById("form-status");
+const statusEl = document.getElementById("form-status");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const data = new FormData(form);
+  const endpoint = "https://formspree.io/f/mdaorprl";
 
-  // BYT DENNE UD MED DIN FORM URL
-  const endpoint = "https://formspree.io/f/mdaorprl"; 
-
-  status.style.color = "#9ca3af";
-  status.textContent = "Sending message…";
+  statusEl.style.color = "#9ca3af";
+  statusEl.textContent = "Sending message…";
 
   try {
     const response = await fetch(endpoint, {
@@ -777,21 +771,19 @@ form.addEventListener("submit", async (e) => {
     });
 
     if (response.ok) {
-      status.style.color = "#7dd3fc";
-      status.textContent = "Thank you! Your message has been sent.";
-      form.reset();   // ← tømmer felterne
+      statusEl.style.color = "#7dd3fc";
+      statusEl.textContent = "Thank you! Your message has been sent.";
+      form.reset();
     } else {
-      status.style.color = "#f87171";
-      status.textContent = "Something went wrong. Please try again later.";
+      statusEl.style.color = "#f87171";
+      statusEl.textContent = "Something went wrong. Please try again later.";
     }
-
   } catch (err) {
-    status.style.color = "#f87171";
-    status.textContent = "Network error. Please try again.";
+    statusEl.style.color = "#f87171";
+    statusEl.textContent = "Network error. Please try again.";
   }
 });
 </script>
-
 
 </body>
 </html>
