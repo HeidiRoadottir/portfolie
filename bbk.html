@@ -5,63 +5,161 @@
   <title>RPA in Barnabókaklubbin – Automation in a Children’s Book Club · Heidi Lindenskov Róadóttir</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    :root {
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --accent: #111827;
+      --accent-strong: #000000;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: #020617;
-      color: #e5e7eb;
+      background: var(--bg);
+      color: var(--text-main);
       line-height: 1.7;
     }
-    main { max-width: 900px; margin: 0 auto; padding: 28px 16px 60px; }
-    a { color: #7dd3fc; text-decoration: none; }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
     a:hover { text-decoration: underline; }
-    .back { font-size: 0.9rem; color: #9ca3af; }
-    h1 { margin: 10px 0 4px; font-size: clamp(2rem, 3vw, 2.3rem); }
-    .meta { font-size: 0.9rem; color: #9ca3af; margin-bottom: 18px; }
-    .hero-sub { color: #cbd5f5; max-width: 42rem; margin-bottom: 20px; }
-    .pill {
-      display: inline-block; font-size: 0.8rem; padding: 3px 8px;
-      border-radius: 999px; border: 1px solid rgba(148,163,184,.4);
-      margin-right: 6px; margin-bottom: 6px; background: #020617;
+
+    .back {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 8px;
     }
-    .layout { display: grid; gap: 18px; margin-top: 16px; }
-    @media (min-width: 820px) {
-      .layout { grid-template-columns: 3fr 2fr; }
+
+    h1 {
+      margin: 10px 0 4px;
+      font-size: clamp(2rem, 3vw, 2.3rem);
+      font-weight: 600;
+      color: var(--accent-strong);
     }
-    .card {
-      background: #020617;
-      border-radius: 14px;
-      border: 1px solid rgba(148,163,184,.25);
-      padding: 16px 16px 14px;
+
+    .meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
       margin-bottom: 14px;
     }
-    .card h2 { margin-top: 0; margin-bottom: 6px; font-size: 1.1rem; }
-    .side-card {
-      background: radial-gradient(circle at top left, #1e293b, #020617);
-      border-radius: 14px;
-      border: 1px solid rgba(148,163,184,.3);
-      padding: 14px 16px 12px;
-      font-size: 0.92rem;
-      color: #cbd5f5;
+
+    .hero-sub {
+      color: var(--text-muted);
+      max-width: 42rem;
+      margin-bottom: 18px;
+      font-size: 0.98rem;
     }
-    .side-card h3 { margin-top: 0; margin-bottom: 4px; font-size: 1rem; }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      margin-right: 6px;
+      margin-bottom: 6px;
+      background: #ffffff;
+      color: var(--text-muted);
+    }
+
+    .layout {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    @media (min-width: 880px) {
+      .layout { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 14px;
+      margin-bottom: 14px;
+      font-size: 0.96rem;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-strong);
+    }
+
+    .card h3 {
+      margin-top: 10px;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .card ul {
+      padding-left: 1.2rem;
+      margin-top: 4px;
+    }
+
+    .side-card {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      padding: 14px 16px 12px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .side-card h3 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent-strong);
+    }
+
     figure {
       margin: 0 0 12px;
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid rgba(148,163,184,.25);
-      background: #020617;
+      border: 1px solid var(--border-subtle);
+      background: #e5e7eb;
       font-size: 0.8rem;
-      color: #9ca3af;
+      color: var(--text-muted);
     }
-    figure img { width: 100%; display: block; }
-    figure figcaption { padding: 8px 10px; }
+
+    figure img {
+      width: 100%;
+      display: block;
+    }
+
+    figure figcaption {
+      padding: 8px 10px;
+    }
+
     footer {
       margin-top: 32px;
       padding-top: 10px;
-      border-top: 1px solid rgba(148,163,184,.25);
+      border-top: 1px solid var(--border-subtle);
       font-size: 0.8rem;
-      color: #9ca3af;
+      color: var(--text-muted);
       text-align: center;
     }
   </style>
@@ -72,7 +170,7 @@
 
     <h1>RPA in Barnabókaklubbin – Automation in a Children’s Book Club</h1>
     <div class="meta">
-      Master project · Digital transformation · RPA · Data & process mapping
+      Master project · Digital transformation · RPA · Data &amp; process mapping
     </div>
 
     <p class="hero-sub">
@@ -94,7 +192,7 @@
     <div class="layout">
       <div>
         <div class="card">
-          <h2>Context & problem</h2>
+          <h2>Context &amp; problem</h2>
           <p>
             The club manages memberships, payments and book shipments using a mix of
             web forms, spreadsheets, Navision/Business Central and email. Because the
@@ -123,7 +221,7 @@
         </div>
 
         <div class="card">
-          <h2>Process & approach</h2>
+          <h2>Process &amp; approach</h2>
           <h3>Understanding current practice</h3>
           <p>
             We started by mapping how new memberships are created, updated and cancelled
@@ -157,7 +255,7 @@
         </div>
 
         <div class="card">
-          <h2>Outcome & insights</h2>
+          <h2>Outcome &amp; insights</h2>
           <p>
             The project proposes a selective, modular automation strategy:
           </p>
@@ -173,7 +271,7 @@
         </div>
 
         <div class="card">
-          <h2>Reflections & learnings</h2>
+          <h2>Reflections &amp; learnings</h2>
           <p>
             This project strengthened my ability to connect technical automation options
             (RPA) with organisational realities and data quality concerns. It also gave
