@@ -111,6 +111,11 @@
       line-height: 1.7;
     }
 
+    .hero-subtitle strong {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
     .hero-highlight {
       display: inline-block;
       margin-top: 10px;
@@ -294,6 +299,7 @@
       position: relative;
       margin-top: 12px;
       padding-left: 32px;
+      --timeline-progress: 0%;
     }
 
     .timeline::before {
@@ -304,6 +310,18 @@
       left: 10px;
       width: 2px;
       background: rgba(148,163,184,0.3);
+    }
+
+    /* den lyse/blå linje der bevæger sig med scroll */
+    .timeline::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 10px;
+      width: 2px;
+      height: var(--timeline-progress);
+      background: linear-gradient(to bottom, #38bdf8, #0ea5e9);
+      border-radius: 999px;
     }
 
     .timeline-item {
@@ -446,7 +464,7 @@
         <div class="hero-tag">Digital transformation · UX · data</div>
         <h1>Heidi Lindenskov Róadóttir</h1>
         <p class="hero-subtitle">
-          I move between <strong>data analysis</strong>, <strong>interaction & critical design</strong>
+          I move between <strong>data analysis</strong>, <strong>interaction &amp; critical design</strong>
           and <strong>automation</strong>. I like working where messy real-world practice meets digital
           systems – from children’s book clubs and football clubs to museums and hidden disability contexts.
         </p>
@@ -463,13 +481,13 @@
             <span class="pill-dot"></span> Digital transformation
           </button>
           <button class="pill" data-filter="ux">
-            <span class="pill-dot"></span> UX & interaction
+            <span class="pill-dot"></span> UX &amp; interaction
           </button>
           <button class="pill" data-filter="data">
-            <span class="pill-dot"></span> Data & analytics
+            <span class="pill-dot"></span> Data &amp; analytics
           </button>
           <button class="pill" data-filter="rpa">
-            <span class="pill-dot"></span> RPA & automation
+            <span class="pill-dot"></span> RPA &amp; automation
           </button>
           <button class="pill" data-filter="critical">
             <span class="pill-dot"></span> Critical design
@@ -508,7 +526,7 @@
       <!-- 2025 - BKK -->
       <article class="project" data-category="digital rpa">
         <h3>RPA in Barnabókaklubbin – Automation in a Children’s Book Club</h3>
-        <p class="project-meta">2025 · Master project · Digital transformation & RPA</p>
+        <p class="project-meta">2025 · Master project · Digital transformation &amp; RPA</p>
         <p class="role"><strong>My role:</strong> Interviews, process mapping, design of automation approach and evaluation.</p>
         <p>
           Barnabókaklubbin is a Faroese children’s book club with fragmented systems and highly manual administration.
@@ -527,10 +545,10 @@
       <!-- 2025 - Sunflower -->
       <article class="project" data-category="ux critical">
         <h3>Det man ikke ser – Critical Design on the Sunflower Lanyard</h3>
-        <p class="project-meta">2025 · Master semester project · Critical & speculative design</p>
+        <p class="project-meta">2025 · Master semester project · Critical &amp; speculative design</p>
         <p class="role"><strong>My role:</strong> Research, experiment design and critical reflection.</p>
         <p>
-          Investigating how the sunflower lanyard for hidden disabilities is interpreted in public space —
+          Investigating how the sunflower lanyard for hidden disabilities is interpreted in public space — 
           and how it can both support and stigmatise.
         </p>
         <div class="project-footer">
@@ -545,8 +563,8 @@
       <!-- EchoGuide -->
       <article class="project" data-category="ux critical">
         <h3>EchoGuide – Accessible Museum Companion</h3>
-        <p class="project-meta">2024 · Master project · UX & accessibility</p>
-        <p class="role"><strong>My role:</strong> Concept & prototype development.</p>
+        <p class="project-meta">2024 · Master project · UX &amp; accessibility</p>
+        <p class="role"><strong>My role:</strong> Concept &amp; prototype development.</p>
         <p>
           Audio-based museum companion improving accessibility for visitors with visual impairments and other needs
           through inclusive interaction design.
@@ -564,7 +582,7 @@
       <article class="project" data-category="digital ux">
         <h3>LumiBreath – Interactive Breathing Lamp</h3>
         <p class="project-meta">2024 · Tangible interaction</p>
-        <p class="role"><strong>My role:</strong> Concept, design & interaction.</p>
+        <p class="role"><strong>My role:</strong> Concept, design &amp; interaction.</p>
         <p>
           Physical-digital lamp that uses light and motion to guide breathing and support calmness
           and emotional regulation.
@@ -616,57 +634,56 @@
 
     </div>
   </section>
-  
+
   <!-- CV / TIMELINE -->
- <section id="cv">
-  <h2>Education</h2>
-  <p class="section-intro">
-    An overview of my educational background within data, design and digital transformation.
-  </p>
+  <section id="cv">
+    <h2>Education</h2>
+    <p class="section-intro">
+      An overview of my educational background within data, design and digital transformation.
+    </p>
 
-  <div class="timeline" id="timeline">
-    <!-- Cand.IT -->
-    <article class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <div class="timeline-year">2024–2026</div>
-        <p><strong>Cand.IT in Digital Transformation</strong> – Roskilde University</p>
-        <p>
-          Specialisation in digital transformation, UX, design, digital infrastructures,
-          automation and organisational change.
-        </p>
-      </div>
-    </article>
+    <div class="timeline" id="timeline">
+      <!-- Cand.IT -->
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">2024–2026</div>
+          <p><strong>Cand.IT in Digital Transformation</strong> – Roskilde University</p>
+          <p>
+            Specialisation in digital transformation, UX, design, digital infrastructures,
+            automation and organisational change.
+          </p>
+        </div>
+      </article>
 
-    <!-- Bachelor Data Analysis -->
-    <article class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <div class="timeline-year">2021–2023</div>
-        <p><strong>Bachelor in Data Analysis</strong> – Copenhagen Business Academy</p>
-        <p>
-          Focus on quantitative methods, statistics, modelling, data interpretation
-          and building data-driven insights.
-        </p>
-      </div>
-    </article>
+      <!-- Bachelor Data Analysis -->
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">2021–2023</div>
+          <p><strong>Bachelor in Data Analysis</strong> – Copenhagen Business Academy</p>
+          <p>
+            Focus on quantitative methods, statistics, modelling, data interpretation
+            and building data-driven insights.
+          </p>
+        </div>
+      </article>
 
-    <!-- AP Degree -->
-    <article class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <div class="timeline-year">2019–2021</div>
-        <p><strong>AP Degree in Marketing Management</strong> – Copenhagen Business Academy</p>
-        <p>
-          Studies in marketing, communication and business, combined with an interest
-          in digital tools and analysis.
-        </p>
-      </div>
-    </article>
-  </div>
-</section>
+      <!-- AP Degree -->
+      <article class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">2019–2021</div>
+          <p><strong>AP Degree in Marketing Management</strong> – Copenhagen Business Academy</p>
+          <p>
+            Studies in marketing, communication and business, combined with an interest
+            in digital tools and analysis.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
 
-  
   <!-- CONTACT -->
   <section id="contact">
     <h2>Contact</h2>
@@ -736,9 +753,11 @@ filterButtons.forEach(button => {
 });
 </script>
 
-<!-- JS: timeline highlight -->
+<!-- JS: timeline highlight + scrollende linje -->
 <script>
 const items = document.querySelectorAll('.timeline-item');
+const timelineEl = document.querySelector('.timeline');
+
 if (items.length) {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -754,6 +773,34 @@ if (items.length) {
 
   items.forEach(i => obs.observe(i));
 }
+
+function updateTimelineProgress() {
+  if (!timelineEl || !items.length) return;
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const scrollY = window.scrollY || window.pageYOffset;
+
+  const firstRect = items[0].getBoundingClientRect();
+  const lastRect = items[items.length - 1].getBoundingClientRect();
+
+  const firstOffset = firstRect.top + scrollY;
+  const lastOffset = lastRect.top + scrollY;
+
+  // punkt ca. 30% nede på skærmen
+  const viewPoint = scrollY + viewportHeight * 0.3;
+
+  const total = lastOffset - firstOffset;
+  if (total <= 0) return;
+
+  let progress = (viewPoint - firstOffset) / total;
+  progress = Math.max(0, Math.min(1, progress));
+
+  timelineEl.style.setProperty('--timeline-progress', (progress * 100) + '%');
+}
+
+window.addEventListener('scroll', updateTimelineProgress);
+window.addEventListener('resize', updateTimelineProgress);
+updateTimelineProgress();
 </script>
 
 <!-- JS: contact form with Formspree -->
@@ -780,7 +827,7 @@ form.addEventListener("submit", async (e) => {
     if (response.ok) {
       statusEl.style.color = "#7dd3fc";
       statusEl.textContent = "Thank you! Your message has been sent.";
-      form.reset();
+      form.reset(); // felterne bliver tømt
     } else {
       statusEl.style.color = "#f87171";
       statusEl.textContent = "Something went wrong. Please try again later.";
