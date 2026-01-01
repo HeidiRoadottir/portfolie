@@ -317,13 +317,30 @@
       text-decoration: none;
     }
 
-    /* TIMELINE – lys, enkel */
+    .btn-see-more {
+      margin-top: 16px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid #111827;
+      background: #ffffff;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn-see-more:hover {
+      background: #111827;
+      color: #ffffff;
+    }
+
+    /* TIMELINE – lys, enkel med bevægende linje */
     .timeline {
       position: relative;
       margin-top: 12px;
       padding-left: 32px;
+      --timeline-progress: 0%;
     }
 
+    /* Baggrundslinje */
     .timeline::before {
       content: "";
       position: absolute;
@@ -332,6 +349,18 @@
       left: 10px;
       width: 1px;
       background: #e5e7eb;
+    }
+
+    /* Den “aktive” del som bevæger sig med scroll */
+    .timeline::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 10px;
+      width: 2px;
+      height: var(--timeline-progress);
+      background: linear-gradient(to bottom, #111827, #6b7280);
+      border-radius: 999px;
     }
 
     .timeline-item {
@@ -347,7 +376,6 @@
       height: 10px;
       border-radius: 999px;
       background: #e5e7eb;
-      transition: background 0.15s ease-out, transform 0.15s ease-out;
     }
 
     .timeline-content {
@@ -368,15 +396,6 @@
     .timeline-item p {
       margin: 0 0 4px;
       color: var(--text-muted);
-    }
-
-    .timeline-item.active .timeline-dot {
-      background: #111827;
-      transform: scale(1.2);
-    }
-
-    .timeline-item.active .timeline-year {
-      color: #111827;
     }
 
     /* CONTACT FORM */
@@ -642,6 +661,8 @@
       </article>
 
     </div>
+
+    <button id="seeMoreProjects" class="btn-see-more">See more projects</button>
   </section>
 
   <!-- CV / TIMELINE -->
@@ -651,7 +672,7 @@
       An overview of my educational background within data, design and digital transformation.
     </p>
 
-    <div class="timeline">
+    <div class="timeline" id="timeline">
       <!-- Cand.IT -->
       <article class="timeline-item">
         <div class="timeline-dot"></div>
@@ -742,45 +763,82 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
-<!-- JS: project filter -->
+<!-- JS: project filter + "See more" funktion -->
 <script>
 const filterButtons = document.querySelectorAll('#filters .pill');
-const projects = document.querySelectorAll('.projects-grid .project');
+const allProjects = Array.from(document.querySelectorAll('.projects-grid .project'));
+const seeMoreBtn = document.getElementById('seeMoreProjects');
+
+const TOP_PROJECTS_COUNT = 3;
+let showAllProjects = false;
+let currentFilter = 'all';
+
+function applyProjectVisibility() {
+  allProjects.forEach((p, index) => {
+    const cats = (p.dataset.category || "").split(" ").map(c => c.trim()).filter(Boolean);
+    const matchesFilter = (currentFilter === "all" || cats.includes(currentFilter));
+    const withinTop = index < TOP_PROJECTS_COUNT;
+    const shouldShow = matchesFilter && (showAllProjects || withinTop);
+    p.style.display = shouldShow ? "" : "none";
+  });
+
+  // skjul knappen hvis der alligevel ikke er noget at vise ekstra
+  const anyHidden = allProjects.length > TOP_PROJECTS_COUNT && allProjects.some((p, index) => index >= TOP_PROJECTS_COUNT);
+  seeMoreBtn.style.display = anyHidden ? "inline-block" : "none";
+}
 
 filterButtons.forEach(button => {
   button.addEventListener('click', () => {
     filterButtons.forEach(b => b.classList.remove('pill--accent', 'active'));
     button.classList.add('pill--accent', 'active');
-
-    const f = button.dataset.filter;
-
-    projects.forEach(p => {
-      const cats = (p.dataset.category || "").split(" ").map(c => c.trim()).filter(Boolean);
-      p.style.display = (f === "all" || cats.includes(f)) ? "" : "none";
-    });
+    currentFilter = button.dataset.filter || 'all';
+    applyProjectVisibility();
   });
 });
+
+seeMoreBtn.addEventListener('click', () => {
+  showAllProjects = !showAllProjects;
+  seeMoreBtn.textContent = showAllProjects ? "See fewer projects" : "See more projects";
+  applyProjectVisibility();
+});
+
+// initial visning – kun de 3 seneste
+applyProjectVisibility();
 </script>
 
-<!-- JS: simple timeline highlight -->
+<!-- JS: timeline progress-linje der bevæger sig med scroll -->
 <script>
-const items = document.querySelectorAll('.timeline-item');
+function updateTimelineProgress() {
+  const timelineEl = document.getElementById('timeline');
+  if (!timelineEl) return;
 
-if (items.length) {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        items.forEach(i => i.classList.remove('active'));
-        e.target.classList.add('active');
-      }
-    });
-  }, {
-    threshold: 0.5,
-    rootMargin: '-10% 0px -40% 0px'
-  });
+  const items = timelineEl.querySelectorAll('.timeline-item');
+  if (!items.length) return;
 
-  items.forEach(i => obs.observe(i));
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const scrollY = window.scrollY || window.pageYOffset;
+
+  const firstRect = items[0].getBoundingClientRect();
+  const lastRect = items[items.length - 1].getBoundingClientRect();
+
+  const firstOffset = firstRect.top + scrollY;
+  const lastOffset = lastRect.top + scrollY;
+
+  const total = lastOffset - firstOffset;
+  if (total <= 0) return;
+
+  // vi bruger ca. 30% nede på skærmen som referencepunkt
+  const viewPoint = scrollY + viewportHeight * 0.3;
+
+  let progress = (viewPoint - firstOffset) / total;
+  progress = Math.max(0, Math.min(1, progress));
+
+  timelineEl.style.setProperty('--timeline-progress', (progress * 100) + '%');
 }
+
+window.addEventListener('scroll', updateTimelineProgress);
+window.addEventListener('resize', updateTimelineProgress);
+updateTimelineProgress();
 </script>
 
 <!-- JS: contact form with Formspree -->
@@ -807,7 +865,7 @@ form.addEventListener("submit", async (e) => {
     if (response.ok) {
       statusEl.style.color = "#16a34a";
       statusEl.textContent = "Thank you! Your message has been sent.";
-      form.reset(); // tøm felter efter send
+      form.reset();
     } else {
       statusEl.style.color = "#b91c1c";
       statusEl.textContent = "Something went wrong. Please try again later.";
