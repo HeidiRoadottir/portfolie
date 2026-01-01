@@ -248,6 +248,20 @@
       transform: translateY(-2px);
     }
 
+    .project-media {
+      margin-bottom: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e5e7eb;
+    }
+
+    .project-media img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
     .project h3 {
       margin: 0 0 4px;
       font-size: 1rem;
@@ -257,12 +271,6 @@
     .project-meta {
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .role {
-      color: var(--accent-strong);
-      font-size: 0.9rem;
       margin-bottom: 6px;
     }
 
@@ -553,9 +561,11 @@
 
       <!-- 2025 - BKK -->
       <article class="project" data-category="digital rpa">
+        <div class="project-media">
+          <img src="images/bbk.jpg" alt="RPA in Barnabókaklubbin – automation of membership processes" />
+        </div>
         <h3>RPA in Barnabókaklubbin – Automation in a Children’s Book Club</h3>
-        <p class="project-meta">2025 · Master project · Digital transformation &amp; RPA</p>
-        <p class="role"><strong>My role:</strong> Interviews, process mapping, design of automation approach and evaluation.</p>
+        <p class="project-meta">2025 · Cand.IT, semester project · Digital transformation &amp; RPA</p>
         <p>
           Barnabókaklubbin is a Faroese children’s book club with fragmented systems and highly manual administration.
           This project investigates how RPA can reduce repetitive work while respecting human judgement.
@@ -572,9 +582,11 @@
 
       <!-- 2025 - Sunflower -->
       <article class="project" data-category="ux critical">
+        <div class="project-media">
+          <img src="images/sunflower.jpg" alt="Critical design explorations around the sunflower lanyard" />
+        </div>
         <h3>Det man ikke ser – Critical Design on the Sunflower Lanyard</h3>
-        <p class="project-meta">2025 · Master semester project · Critical &amp; speculative design</p>
-        <p class="role"><strong>My role:</strong> Research, experiment design and critical reflection.</p>
+        <p class="project-meta">2025 · Cand.IT, semester project · Critical &amp; speculative design</p>
         <p>
           Investigating how the sunflower lanyard for hidden disabilities is interpreted in public space — 
           and how it can both support and stigmatise.
@@ -588,11 +600,33 @@
         </div>
       </article>
 
-      <!-- EchoGuide -->
+      <!-- LumiBreath -->
+      <article class="project" data-category="digital ux">
+        <div class="project-media">
+          <img src="images/lumibreath.jpg" alt="LumiBreath interactive breathing lamp" />
+        </div>
+        <h3>LumiBreath – Interactive Breathing Lamp</h3>
+        <p class="project-meta">2024 · Cand.IT, semester project · Tangible interaction</p>
+        <p>
+          Physical-digital lamp that uses light and motion to guide breathing and support calmness
+          and emotional regulation.
+        </p>
+        <div class="project-footer">
+          <div class="project-tags">
+            <span class="pill-small">Interaction design</span>
+            <span class="pill-small">Embodied</span>
+          </div>
+          <a href="lumibreath.html" class="read-more">Read more →</a>
+        </div>
+      </article>
+      
+      <!-- EchoGuide  -->
       <article class="project" data-category="ux critical">
+        <div class="project-media">
+          <img src="images/echoguide.jpg" alt="EchoGuide accessible museum companion prototype" />
+        </div>
         <h3>EchoGuide – Accessible Museum Companion</h3>
-        <p class="project-meta">2024 · Master project · UX &amp; accessibility</p>
-        <p class="role"><strong>My role:</strong> Concept &amp; prototype development.</p>
+        <p class="project-meta">2024 · Cand.IT, semester project · UX &amp; accessibility</p>
         <p>
           Audio-based museum companion improving accessibility for visitors with visual impairments and other needs
           through inclusive interaction design.
@@ -606,29 +640,13 @@
         </div>
       </article>
 
-      <!-- LumiBreath -->
-      <article class="project" data-category="digital ux">
-        <h3>LumiBreath – Interactive Breathing Lamp</h3>
-        <p class="project-meta">2024 · Tangible interaction</p>
-        <p class="role"><strong>My role:</strong> Concept, design &amp; interaction.</p>
-        <p>
-          Physical-digital lamp that uses light and motion to guide breathing and support calmness
-          and emotional regulation.
-        </p>
-        <div class="project-footer">
-          <div class="project-tags">
-            <span class="pill-small">Interaction design</span>
-            <span class="pill-small">Embodied</span>
-          </div>
-          <a href="lumibreath.html" class="read-more">Read more →</a>
-        </div>
-      </article>
-
       <!-- Knowable -->
       <article class="project" data-category="data">
+        <div class="project-media">
+          <img src="images/knowable.jpg" alt="Knowable Trustpilot review insights dashboard" />
+        </div>
         <h3>Knowable – Trustpilot Review Insights</h3>
         <p class="project-meta">2023 · Bachelor project · NLP / R</p>
-        <p class="role"><strong>My role:</strong> Concept, data pipeline, text analysis and prototype.</p>
         <p>
           Analysing the text behind Trustpilot star ratings using sentiment and topic modelling to reveal
           richer patterns in customer experience.
@@ -644,9 +662,11 @@
 
       <!-- Brøndby -->
       <article class="project" data-category="data">
+        <div class="project-media">
+          <img src="images/brondby.jpg" alt="Data visualisation for Brøndby IF football analytics" />
+        </div>
         <h3>Brøndby IF – Data-Driven Football Analytics</h3>
         <p class="project-meta">2022 · Bachelor project · Sports analytics</p>
-        <p class="role"><strong>My role:</strong> Data preparation, modelling and interpretation.</p>
         <p>
           Expected Goals modelling and performance analysis based on match event data to support more
           data-driven tactical decisions.
@@ -782,7 +802,6 @@ function applyProjectVisibility() {
     p.style.display = shouldShow ? "" : "none";
   });
 
-  // skjul knappen hvis der alligevel ikke er noget at vise ekstra
   const anyHidden = allProjects.length > TOP_PROJECTS_COUNT && allProjects.some((p, index) => index >= TOP_PROJECTS_COUNT);
   seeMoreBtn.style.display = anyHidden ? "inline-block" : "none";
 }
@@ -827,7 +846,6 @@ function updateTimelineProgress() {
   const total = lastOffset - firstOffset;
   if (total <= 0) return;
 
-  // vi bruger ca. 30% nede på skærmen som referencepunkt
   const viewPoint = scrollY + viewportHeight * 0.3;
 
   let progress = (viewPoint - firstOffset) / total;
